@@ -6,22 +6,30 @@ const app = require('.');
 
 //services
 const { HomeService,
-        PruebaService } = require('../services');
+        PruebaService,
+        UserService,
+        AuthService } = require('../services');
 
 //controllers
 const { HomeController,
-        PruebaController } = require('../controllers');
+        PruebaController,
+        UserController,
+        AuthController } = require('../controllers');
 
 //routes
 const { HomeRoutes,
-    PruebaRoutes } = require('../routes/index.routes')
+        PruebaRoutes,
+        UserRoutes,
+        AuthRoutes } = require('../routes/index.routes')
 const Routes = require('../routes');
 
 //models
-const { Prueba } = require('../models');
+const { Prueba,
+        User } = require('../models');
 
 //Repositories
-const { PruebaRepository } = require('../repositories');
+const { PruebaRepository,
+        UserRepository } = require('../repositories');
 
 const container = new createContainer();
 
@@ -33,23 +41,31 @@ container
     })
     .register({
         HomeService: asClass(HomeService).singleton(),
-        PruebaService: asClass(PruebaService).singleton()
+        PruebaService: asClass(PruebaService).singleton(),
+        UserService: asClass(UserService).singleton(),
+        AuthService: asClass(AuthService).singleton()
     })
     .register({
         //esto se hace para que el scope se mantenga porque cambia cuando express
         //llama a un controlador
         HomeController: asClass(HomeController.bind(HomeController)).singleton(),
-        PruebaController: asClass(PruebaController.bind(PruebaController)).singleton()
+        PruebaController: asClass(PruebaController.bind(PruebaController)).singleton(),
+        UserController: asClass(UserController.bind(UserController)).singleton(),
+        AuthController: asClass(AuthController.bind(AuthController)).singleton()
     })
     .register({
         HomeRoutes: asFunction(HomeRoutes).singleton(),
-        PruebaRoutes: asFunction(PruebaRoutes).singleton()
+        PruebaRoutes: asFunction(PruebaRoutes).singleton(),
+        UserRoutes: asFunction(UserRoutes).singleton(),
+        AuthRoutes: asFunction(AuthRoutes).singleton()
     })
     .register({
-        Prueba: asValue(Prueba)
+        Prueba: asValue(Prueba),
+        User: asValue(User)
     })
     .register({
-        PruebaRepository: asClass(PruebaRepository).singleton()
+        PruebaRepository: asClass(PruebaRepository).singleton(),
+        UserRepository: asClass(UserRepository).singleton()
     });
 
 module.exports = container;

@@ -1,3 +1,4 @@
 module.exports = {
-    Prueba : require('./prueba.model')
+    Prueba : require('./prueba.model'),
+    User: require('./user.model')
 }

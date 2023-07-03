@@ -1,3 +1,4 @@
 module.exports = {
-    PruebaRepository: require('./prueba.repository')
+    PruebaRepository: require('./prueba.repository'),
+    UserRepository: require('./user.repository')
 }

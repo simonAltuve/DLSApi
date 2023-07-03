@@ -5,7 +5,9 @@ const compression = require('compression');
 require('express-async-errors');
 
 module.exports = function ({ HomeRoutes,
-    PruebaRoutes }) {
+    PruebaRoutes,
+    UserRoutes,
+    AuthRoutes}) {
     const router = express.Router();
     const apiRoutes = express.Router();
 
@@ -19,6 +21,8 @@ module.exports = function ({ HomeRoutes,
     //rutas por defecto
     apiRoutes.use('/home', HomeRoutes);
     apiRoutes.use('/prueba', PruebaRoutes);
+    apiRoutes.use('/user',UserRoutes);
+    apiRoutes.use('/auth',AuthRoutes)
 
     router.use('/v1/apidls', apiRoutes);
 
