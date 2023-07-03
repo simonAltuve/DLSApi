@@ -10,7 +10,6 @@ class PruebaController {
     async get(req, res) {
         const { pruebaId } = req.params;
         const prueba = await _pruebaService.get(pruebaId);
-        console.log("Esto devolvio " + prueba);
         return res.send(prueba);
     }
 
