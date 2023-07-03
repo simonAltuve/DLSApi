@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 require('express-async-errors');
+const { ErrorMiddleware, NotFoundMiddleware} = require('../middlewares')
 
 module.exports = function ({ HomeRoutes,
     PruebaRoutes,
@@ -25,6 +26,9 @@ module.exports = function ({ HomeRoutes,
     apiRoutes.use('/auth',AuthRoutes)
 
     router.use('/v1/apidls', apiRoutes);
+
+    router.use(ErrorMiddleware);
+    router.use(NotFoundMiddleware);
 
 
     return router;
