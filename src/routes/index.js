@@ -9,7 +9,8 @@ module.exports = function ({ HomeRoutes,
     PruebaRoutes,
     UserRoutes,
     AuthRoutes,
-    PacienteRoutes}) {
+    PacienteRoutes,
+    AsistenciaRoutes}) {
     const router = express.Router();
     const apiRoutes = express.Router();
 
@@ -26,6 +27,7 @@ module.exports = function ({ HomeRoutes,
     apiRoutes.use('/user',UserRoutes);
     apiRoutes.use('/auth',AuthRoutes);
     apiRoutes.use('/paciente', PacienteRoutes);
+    apiRoutes.use('/asistencia', AsistenciaRoutes)
 
 
     router.use('/v1/apidls', apiRoutes);
