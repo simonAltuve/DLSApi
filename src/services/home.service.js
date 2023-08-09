@@ -1,7 +1,7 @@
 class HomeService{
     index(){
         return{
-            message: "API DL Salud"
+            message: "API Simon Altuve"
         }
     }
 }
