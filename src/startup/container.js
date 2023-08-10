@@ -10,7 +10,8 @@ const { HomeService,
         UserService,
         AuthService,
         PacienteService,
-        AsistenciService } = require('../services');
+        AsistenciService,
+        LightService } = require('../services');
 
 //controllers
 const { HomeController,
@@ -18,7 +19,8 @@ const { HomeController,
         UserController,
         AuthController,
         PacienteController,
-        AsistenciaController } = require('../controllers');
+        AsistenciaController,
+        LightController } = require('../controllers');
 
 //routes
 const { HomeRoutes,
@@ -26,7 +28,8 @@ const { HomeRoutes,
         UserRoutes,
         AuthRoutes,
         PacienteRoutes,
-        AsistenciaRoutes } = require('../routes/index.routes')
+        AsistenciaRoutes,
+        LightRoutes } = require('../routes/index.routes')
 const Routes = require('../routes');
 
 //models
@@ -40,7 +43,6 @@ const { PruebaRepository,
         UserRepository,
         PacienteRepository,
         AsistenciaRepository } = require('../repositories');
-const asistenciaRoutes = require('../routes/asistencia.routes');
 
 const container = new createContainer();
 
@@ -56,7 +58,8 @@ container
         UserService: asClass(UserService).singleton(),
         AuthService: asClass(AuthService).singleton(),
         PacienteService: asClass(PacienteService).singleton(),
-        AsistenciaService: asClass(AsistenciService).singleton()
+        AsistenciaService: asClass(AsistenciService).singleton(),
+        LightService: asClass(LightService).singleton()
     })
     .register({
         //esto se hace para que el scope se mantenga porque cambia cuando express
@@ -66,7 +69,8 @@ container
         UserController: asClass(UserController.bind(UserController)).singleton(),
         AuthController: asClass(AuthController.bind(AuthController)).singleton(),
         PacienteController: asClass(PacienteController.bind(PacienteController)).singleton(),
-        AsistenciaController: asClass(AsistenciaController.bind(AsistenciaController)).singleton()
+        AsistenciaController: asClass(AsistenciaController.bind(AsistenciaController)).singleton(),
+        LightController: asClass(LightController.bind(LightController)).singleton()
     })
     .register({
         HomeRoutes: asFunction(HomeRoutes).singleton(),
@@ -74,7 +78,8 @@ container
         UserRoutes: asFunction(UserRoutes).singleton(),
         AuthRoutes: asFunction(AuthRoutes).singleton(),
         PacienteRoutes: asFunction(PacienteRoutes).singleton(),
-        AsistenciaRoutes: asFunction(asistenciaRoutes).singleton()
+        AsistenciaRoutes: asFunction(AsistenciaRoutes).singleton(),
+        LightRoutes: asFunction(LightRoutes).singleton()
     })
     .register({
         Prueba: asValue(Prueba),

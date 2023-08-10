@@ -4,5 +4,6 @@ module.exports = {
     UserRoutes: require('./user.routes'),
     AuthRoutes: require('./auth.routes'),
     PacienteRoutes: require('./paciente.routes'),
-    AsistenciaRoutes: require('./asistencia.routes')
+    AsistenciaRoutes: require('./asistencia.routes'),
+    LightRoutes: require('./light.routes')
 };
