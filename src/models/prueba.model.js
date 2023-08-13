@@ -6,7 +6,13 @@ const PruebaSchema = new Schema({
     costo: {type: Number},
     precio: {type: Number},
     tiempo_entrega: {type: String},
-    muestra: {type: String}
+    muestra: {type: String},
+    examenes:[{
+        type: Schema.Types.ObjectId,
+        ref: "examen-realizado",
+        required: true,
+        autopopulate: false
+    }]
 });
 
 module.exports = mongoose.model("prueba", PruebaSchema);

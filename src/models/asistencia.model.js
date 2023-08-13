@@ -9,11 +9,11 @@ const AsistenciaSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "paciente",
         required: true,
-        autopopulate: true
+        autopopulate: false
     },
-    pruebas:[{
+    examenes:[{
         type: Schema.Types.ObjectId,
-        ref: "prueba",
+        ref: "examen-realizado",
         required: true,
         autopopulate: true
     }]

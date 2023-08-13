@@ -5,5 +5,6 @@ module.exports = {
     AuthRoutes: require('./auth.routes'),
     PacienteRoutes: require('./paciente.routes'),
     AsistenciaRoutes: require('./asistencia.routes'),
-    LightRoutes: require('./light.routes')
+    LightRoutes: require('./light.routes'),
+    ExamenesRealizadosRoutes: require('./examen-realizado.routes')
 };

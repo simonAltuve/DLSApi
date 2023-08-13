@@ -21,10 +21,11 @@ class AsistenciaController {
     }
 
     async create(req, res) {
-        //en los comentarios abajo se obtiene el token del usuario
         const { body } = req;
+        const { pacienteId } = req.params;
         //const {id: userId} = req.user;
-        const createdAsistencia = await _asistenciaService.create(body);
+        const createdAsistencia = await _asistenciaService.createAsistencia(body, pacienteId);
+
         return res.status(201).send(createdAsistencia);
     }
 

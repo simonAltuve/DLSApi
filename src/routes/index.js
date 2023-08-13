@@ -14,7 +14,8 @@ module.exports = function ({ HomeRoutes,
     AuthRoutes,
     PacienteRoutes,
     AsistenciaRoutes,
-    LightRoutes}) {
+    LightRoutes,
+    ExamenesRealizadosRoutes}) {
     const router = express.Router();
     const apiRoutes = express.Router();
 
@@ -33,6 +34,7 @@ module.exports = function ({ HomeRoutes,
     apiRoutes.use('/paciente', PacienteRoutes);
     apiRoutes.use('/asistencia', AsistenciaRoutes)
     apiRoutes.use('/lights', LightRoutes);
+    apiRoutes.use('/examenesrealizados', ExamenesRealizadosRoutes)
 
 
     router.use('/v1/apisa', apiRoutes);

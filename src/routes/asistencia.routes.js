@@ -6,7 +6,7 @@ module.exports = function({AsistenciaController}){
 
     router.get("", AuthMiddleware, AsistenciaController.getAll);
     router.get("/:asistenciaId", AuthMiddleware, AsistenciaController.get);
-    router.post("", AuthMiddleware, AsistenciaController.create);
+    router.post("/:pacienteId", AuthMiddleware, AsistenciaController.create);
     router.patch("/:asistenciaId", AuthMiddleware, AsistenciaController.update);
     router.delete("/:asistenciaId", AuthMiddleware, AsistenciaController.delete);
 
