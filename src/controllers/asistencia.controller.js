@@ -8,8 +8,8 @@ class AsistenciaController {
     }
 
     async get(req, res) {
-        const { asistenciaId } = req.params;
-        const asistencia = await _asistenciaService.get(asistenciaId);
+        const { assistanceId } = req.params;
+        const asistencia = await _asistenciaService.get(assistanceId);
         return res.send(asistencia);
     }
 
@@ -22,24 +22,24 @@ class AsistenciaController {
 
     async create(req, res) {
         const { body } = req;
-        const { pacienteId } = req.params;
+        const { patientId } = req.params;
         //const {id: userId} = req.user;
-        const createdAsistencia = await _asistenciaService.createAsistencia(body, pacienteId);
+        const createdAsistencia = await _asistenciaService.createAsistencia(body, patientId);
 
         return res.status(201).send(createdAsistencia);
     }
 
     async update(req, res) {
         const { body } = req;
-        const { asistenciaId } = req.params;
-        const updatedAsistencia = await _asistenciaService.update(asistenciaId, body);
+        const { assistanceId } = req.params;
+        const updatedAsistencia = await _asistenciaService.update(assistanceId, body);
 
         return res.send(updatedAsistencia);
     }
 
     async delete(req, res) {
-        const { asistenciaId } = req.params;
-        const deletedAsistencia = await _asistenciaService.delete(asistenciaId);
+        const { assistanceId } = req.params;
+        const deletedAsistencia = await _asistenciaService.delete(assistanceId);
         return res.send(deletedAsistencia);
     }
 

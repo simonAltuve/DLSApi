@@ -8,13 +8,14 @@ class ExamenRealizadoService extends BaseService{
         ExamenRealizadoRepository,
         AsistenciaRepository,
         PruebaRepository}) {
+            
         super(ExamenRealizadoRepository);
         _examenRealizadoRepository = ExamenRealizadoRepository;
         _asistenciaRepository = AsistenciaRepository;
         _pruebaRepository = PruebaRepository;
     }
 
-    async createExamenRealizado( asistenciaId, pruebaId, body){
+    async createTestPerformed( asistenciaId, pruebaId, body){
 
         if (!asistenciaId) {
             const error = new Error();

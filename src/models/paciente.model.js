@@ -3,10 +3,10 @@ const { Schema } = mongoose;
 
 const PacienteSchema = new Schema({
     identificacion: {type: String, required: true},
-    nombre_a: {type: String, required: true},
-    nombre_b: {type: String},
-    apellido_a: {type: String, required: true},
-    apellido_b: {type: String},
+    nombre1: {type: String, required: true},
+    nombre2: {type: String},
+    apellido1: {type: String, required: true},
+    apellido2: {type: String},
     sexo: {type: String, enum:['Femenino','Masculino'], default: 'Femenino'},
     fecha_nacimiento: {type: Date},
     num_hijo: {type: Number},
@@ -17,7 +17,7 @@ const PacienteSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "asistencia",
         required: true,
-        autopopulate: true
+        autopopulate: false
     }]
 });
 

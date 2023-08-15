@@ -6,8 +6,8 @@ class PacienteController{
     }
 
     async get(req, res){
-        const { pacienteId } = req.params;
-        const paciente = await _pacienteService.get(pacienteId);
+        const { patientId } = req.params;
+        const paciente = await _pacienteService.get(patientId);
         return res.send(paciente);
     }
 
@@ -23,15 +23,15 @@ class PacienteController{
     }
 
     async update(req, res){
-        const {pacienteId} = req.params;
+        const {patientId} = req.params;
         const {body} = req;
-        const updatedPaciente = await _pacienteService.update(pacienteId, body);
+        const updatedPaciente = await _pacienteService.update(patientId, body);
         return res.send(updatedPaciente);
     }
 
     async delete(req, res) {
-        const { pacienteId } = req.params;
-        const deletedPaciente = await _pacienteService.delete(pacienteId);
+        const { patientId } = req.params;
+        const deletedPaciente = await _pacienteService.delete(patientId);
         return res.send(deletedPaciente);
     }
 

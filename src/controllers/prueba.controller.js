@@ -8,8 +8,8 @@ class PruebaController {
     }
 
     async get(req, res) {
-        const { pruebaId } = req.params;
-        const prueba = await _pruebaService.get(pruebaId);
+        const { testId } = req.params;
+        const prueba = await _pruebaService.get(testId);
         return res.send(prueba);
     }
 
@@ -30,15 +30,15 @@ class PruebaController {
 
     async update(req, res) {
         const { body } = req;
-        const { pruebaId } = req.params;
-        const updatedPrueba = await _pruebaService.update(pruebaId, body);
+        const { testId } = req.params;
+        const updatedPrueba = await _pruebaService.update(testId, body);
 
         return res.send(updatedPrueba);
     }
 
     async delete(req, res) {
-        const { pruebaId } = req.params;
-        const deletedPrueba = await _pruebaService.delete(pruebaId);
+        const { testId } = req.params;
+        const deletedPrueba = await _pruebaService.delete(testId);
         return res.send(deletedPrueba);
     }
 

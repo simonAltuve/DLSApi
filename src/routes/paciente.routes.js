@@ -5,10 +5,10 @@ module.exports = function({PacienteController}){
     const router = Router();
 
     router.get("", AuthMiddleware, PacienteController.getAll);
-    router.get("/:pacienteId", AuthMiddleware, PacienteController.get);
+    router.get("/:patientId", AuthMiddleware, PacienteController.get);
     router.post("", AuthMiddleware, PacienteController.create);
-    router.patch("/:pacienteId", AuthMiddleware, PacienteController.update);
-    router.delete("/:pacienteId", AuthMiddleware, PacienteController.delete);
+    router.patch("/:patientId", AuthMiddleware, PacienteController.update);
+    router.delete("/:patientId", AuthMiddleware, PacienteController.delete);
 
     return router;
 }

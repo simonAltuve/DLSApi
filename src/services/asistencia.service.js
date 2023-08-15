@@ -36,8 +36,10 @@ class AsistenciaService extends BaseService {
         }
 
         paciente.asistencias.push(createdAsistencia);
+
+        await _pacienteRepository.update(pacienteId, {asistencias: paciente.asistencias});
         
-        return await _pacienteRepository.update(pacienteId, {asistencias: paciente.asistencias});
+        return createdAsistencia;
     }
 
 }

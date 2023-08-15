@@ -5,10 +5,10 @@ module.exports = function({ ExamenRealizadoController }){
     const router = Router();
 
     router.get("", AuthMiddleware, ExamenRealizadoController.getAll);
-    router.get("/:examenRId", AuthMiddleware, ExamenRealizadoController.get);
-    router.post("/:asistenciaId/:pruebaId", AuthMiddleware, ExamenRealizadoController.createExamenRealizado);
-    router.patch("/:examenRId", AuthMiddleware, ExamenRealizadoController.update);
-    router.delete("/:examenRId", AuthMiddleware, ExamenRealizadoController.delete);
+    router.get("/:testperfId", AuthMiddleware, ExamenRealizadoController.get);
+    router.post("/:assistanceId/:testId", AuthMiddleware, ExamenRealizadoController.createTestPerformed);
+    router.patch("/:testperfId", AuthMiddleware, ExamenRealizadoController.update);
+    router.delete("/:testperfId", AuthMiddleware, ExamenRealizadoController.delete);
 
     return router;
 }

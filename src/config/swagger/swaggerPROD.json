@@ -1,0 +1,1354 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Backend ::Simon Altuve:: App",
+      "version": "1.0.0",
+      "title": "Swagger Simon Altuve",
+      "contact": {
+        "email": "simonc25@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "https://api-service-dls.onrender.com",
+    "basePath": "/v1/apisa",
+    "tags": [
+      {
+        "name": "Home",
+        "description": "Home endpoint."
+      },
+      {
+        "name": "Authentication",
+        "description": "Everything about authentication"
+      },
+      {
+        "name": "User",
+        "description": "Everything about users"
+      },
+      {
+        "name": "Patient",
+        "description": "Everything about patients"
+      },
+      {
+        "name": "Assistance",
+        "description": "Everything about attends"
+      },
+      {
+        "name": "Test",
+        "description": "Everything about tests"
+      },
+      {
+        "name": "Test Performed",
+        "description": "Everything about tests performed on an assistance"
+      },
+      {
+        "name": "Light",
+        "description": "Everything about lights"
+      }
+    ],
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "paths": {
+      "/home": {
+        "get": {
+          "tags": [
+            "Home"
+          ],
+          "summary": "Return message.",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/auth/signin": {
+        "post": {
+          "tags": [
+            "Authentication"
+          ],
+          "summary": "Authenticate an User",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "User",
+              "in": "body",
+              "required": true,
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "__v": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/auth/signup": {
+        "post": {
+          "tags": [
+            "Authentication"
+          ],
+          "summary": "Create an User",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "User",
+              "in": "body",
+              "required": true,
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Finds All the Users",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/{userId}": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Find one user",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "userId",
+              "in": "path",
+              "type": "string",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Update one user",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "userId",
+              "in": "path",
+              "type": "string",
+              "description": "User Id",
+              "required": true
+            },
+            {
+              "name": "User",
+              "in": "body",
+              "required": true,
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Delete one user",
+          "description": "",
+          "produces": [
+            true
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "userId",
+              "in": "path",
+              "type": "string",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "a string that represents a boolean value",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      },
+      "/patient": {
+        "get": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Find all patients",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Patient"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Create patient",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Patient",
+              "in": "body",
+              "required": true,
+              "description": "Patient object to create",
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/patient/{patientId}": {
+        "get": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Find one patient",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "patientId",
+              "in": "path",
+              "type": "string",
+              "description": "Patient Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Update one patient",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "patientId",
+              "in": "path",
+              "type": "string",
+              "description": "Patient Id",
+              "required": true
+            },
+            {
+              "name": "Patient",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Patient"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Patient"
+          ],
+          "summary": "Delete one patient",
+          "description": "",
+          "produces": [
+            true
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "patientId",
+              "in": "path",
+              "type": "string",
+              "description": "Patient Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "a string that represents a boolean value",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      },
+      "/assistance": {
+        "get": {
+          "tags": [
+            "Assistance"
+          ],
+          "summary": "Finds All assistances",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Assistance"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/assistance/{patientId}": {
+        "post": {
+          "tags": [
+            "Assistance"
+          ],
+          "summary": "Create attend",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "patientId",
+              "in": "path",
+              "type": "string",
+              "description": "Patient Id",
+              "required": true
+            },
+            {
+              "name": "Assistance",
+              "in": "body",
+              "required": true,
+              "type": "object",
+              "properties": {
+                "fecha": {
+                  "type": "string"
+                },
+                "descuento": {
+                  "type": "number"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Assistance"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/assistance/{assistanceId}": {
+        "get": {
+          "tags": [
+            "Assistance"
+          ],
+          "summary": "Find one attend",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "assistanceId",
+              "in": "path",
+              "type": "string",
+              "description": "Assistance Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Assistance"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Assistance"
+          ],
+          "summary": "Update one assistance",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "assistanceId",
+              "in": "path",
+              "type": "string",
+              "description": "Assistance Id",
+              "required": true
+            },
+            {
+              "name": "Assistance",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Assistance"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Assistance"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Assistance"
+          ],
+          "summary": "Delete one assistance",
+          "description": "",
+          "produces": [
+            true
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "assistanceId",
+              "in": "path",
+              "type": "string",
+              "description": "Assistance Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "a string that represents a boolean value",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      },
+      "/test": {
+        "get": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "Finds All tests",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Test"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "Create test",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Test",
+              "in": "body",
+              "required": true,
+              "description": "Test object to create",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/test/{testId}": {
+        "get": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "Find one test",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "Update one test",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Id",
+              "required": true
+            },
+            {
+              "name": "Test",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Test"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Test"
+          ],
+          "summary": "Delete one test",
+          "description": "",
+          "produces": [
+            true
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "a string that represents a boolean value",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      },
+      "/testperformed": {
+        "get": {
+          "tags": [
+            "Test Performed"
+          ],
+          "summary": "Finds All tests performed",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/TestsPerformed"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/testperformed/{assistanceId}/{testId}": {
+        "post": {
+          "tags": [
+            "Test Performed"
+          ],
+          "summary": "Create test",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "assistanceId",
+              "in": "path",
+              "type": "string",
+              "description": "Assistance Id",
+              "required": true
+            },
+            {
+              "name": "testId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Id",
+              "required": true
+            },
+            {
+              "name": "Test",
+              "in": "body",
+              "required": true,
+              "description": "Test performed object to create",
+              "type": "object",
+              "properties": {
+                "precio": {
+                  "type": "number"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/TestsPerformed"
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/testperformed/{testperfId}": {
+        "get": {
+          "tags": [
+            "Test Performed"
+          ],
+          "summary": "Finds one test performed",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testperfId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Performed Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/TestsPerformed"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Test Performed"
+          ],
+          "summary": "Update one test performed",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testperfId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Performed Id",
+              "required": true
+            },
+            {
+              "name": "Test Performed",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/TestsPerformed"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/TestsPerformed"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Test Performed"
+          ],
+          "summary": "Delete one test performed",
+          "description": "",
+          "produces": [
+            true
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "testperfId",
+              "in": "path",
+              "type": "string",
+              "description": "Test Performed Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "a string that represents a boolean value",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid tag value"
+            }
+          }
+        }
+      },
+      "/lights": {
+        "post": {
+          "tags": [
+            "Light"
+          ],
+          "summary": "Process a plan room",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "room",
+              "description": "String with 0 and 1 that represents the map room.",
+              "required": true,
+              "type": "object",
+              "properties": {
+                "room": {
+                  "type": "string",
+                  "example": "0000*0010*0010*0000"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "room": {
+                    "type": "string",
+                    "example": "2333*3312*3313*3233"
+                  }
+                }
+              }
+            },
+            "400": {
+              "message": "Invalid format"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        }
+      },
+      "Patient": {
+        "type": "object",
+        "properties": {
+          "identificacion": {
+            "type": "string",
+            "required": true
+          },
+          "nombre1": {
+            "type": "string",
+            "required": true
+          },
+          "nombre2": {
+            "type": "string"
+          },
+          "apellido1": {
+            "type": "string",
+            "required": true
+          },
+          "apellido2": {
+            "type": "string"
+          },
+          "sexo": {
+            "type": "string",
+            "enum": [
+              "Femenino",
+              "Masculino"
+            ]
+          },
+          "fecha_nacimiento": {
+            "type": "string"
+          },
+          "num_hijo": {
+            "type": "number"
+          },
+          "edad": {
+            "type": "number"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "asistencias": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Assistance": {
+        "type": "object",
+        "properties": {
+          "fecha": {
+            "type": "string"
+          },
+          "resultado": {
+            "type": "string"
+          },
+          "descuento": {
+            "type": "number"
+          },
+          "paciente": {
+            "type": "string"
+          },
+          "examenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/TestsPerformed"
+            }
+          }
+        }
+      },
+      "Test": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "costo": {
+            "type": "number"
+          },
+          "precio": {
+            "type": "number"
+          },
+          "tiempo_entrega": {
+            "type": "string"
+          },
+          "muestra": {
+            "type": "string"
+          },
+          "examenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/TestsPerformed"
+            }
+          }
+        }
+      },
+      "TestsPerformed": {
+        "type": "object",
+        "properties": {
+          "precio": {
+            "type": "number"
+          },
+          "asistencia": {
+            "type": "string"
+          },
+          "prueba": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

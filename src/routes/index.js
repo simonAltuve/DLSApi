@@ -28,13 +28,13 @@ module.exports = function ({ HomeRoutes,
 
     //rutas por defecto
     apiRoutes.use('/home', HomeRoutes);
-    apiRoutes.use('/prueba', PruebaRoutes);
+    apiRoutes.use('/test', PruebaRoutes);
     apiRoutes.use('/user',UserRoutes);
     apiRoutes.use('/auth',AuthRoutes);
-    apiRoutes.use('/paciente', PacienteRoutes);
-    apiRoutes.use('/asistencia', AsistenciaRoutes)
+    apiRoutes.use('/patient', PacienteRoutes);
+    apiRoutes.use('/assistance', AsistenciaRoutes)
     apiRoutes.use('/lights', LightRoutes);
-    apiRoutes.use('/examenesrealizados', ExamenesRealizadosRoutes)
+    apiRoutes.use('/testperformed', ExamenesRealizadosRoutes)
 
 
     router.use('/v1/apisa', apiRoutes);

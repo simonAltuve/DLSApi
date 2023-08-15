@@ -5,10 +5,10 @@ module.exports = function({AsistenciaController}){
     const router = Router();
 
     router.get("", AuthMiddleware, AsistenciaController.getAll);
-    router.get("/:asistenciaId", AuthMiddleware, AsistenciaController.get);
-    router.post("/:pacienteId", AuthMiddleware, AsistenciaController.create);
-    router.patch("/:asistenciaId", AuthMiddleware, AsistenciaController.update);
-    router.delete("/:asistenciaId", AuthMiddleware, AsistenciaController.delete);
+    router.get("/:assistanceId", AuthMiddleware, AsistenciaController.get);
+    router.post("/:patientId", AuthMiddleware, AsistenciaController.create);
+    router.patch("/:assistanceId", AuthMiddleware, AsistenciaController.update);
+    router.delete("/:assistanceId", AuthMiddleware, AsistenciaController.delete);
 
     return router;
 }

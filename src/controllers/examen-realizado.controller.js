@@ -7,27 +7,39 @@ class ExamenRealizadoController{
     }
 
     async get( req, res){
-        return true;
+
+        const { testperfId } = req.params;
+
+        return res.send(await _examenRealizadoService.get(testperfId));
     }
 
     async getAll( req, res){
-        return true;
+        
+        return res.send(await _examenRealizadoService.getAll());
     }
 
-    async createExamenRealizado(req, res){
+    async createTestPerformed(req, res){
         
-        const { asistenciaId, pruebaId } = req.params;
+        const { assistanceId, testId } = req.params;
         const { body } = req;
 
-        return res.send(await _examenRealizadoService.createExamenRealizado(asistenciaId, pruebaId, body));
+        return res.send(await _examenRealizadoService.createTestPerformed(assistanceId, testId, body));
     }
 
     async update( req, res){
-        return true;
+
+        const { testperfId } = req.params;
+        const { body } = req;
+        const updatedTestPerformed = await _examenRealizadoService.update(testperfId, body);
+
+        return res.send(updatedTestPerformed);
     }
 
     async delete( req, res){
-        return true;
+        
+        const { testperfId } = req.params;
+        const deletedTestPerformed = await _examenRealizadoService.delete(testperfId);
+        return res.send(deletedTestPerformed);
     }
 }
 
