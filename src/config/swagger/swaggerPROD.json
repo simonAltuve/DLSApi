@@ -12,7 +12,7 @@
         "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
       }
     },
-    "host": "api-service-dls.onrender.com",
+    "host": "https://api-service-dls.onrender.com",
     "basePath": "/v1/apisa",
     "tags": [
       {
@@ -49,7 +49,7 @@
       }
     ],
     "schemes": [
-      "https"
+      
     ],
     "paths": {
       "/home": {
