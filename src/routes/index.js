@@ -16,6 +16,7 @@ module.exports = function ({ HomeRoutes,
     AsistenciaRoutes,
     LightRoutes,
     ExamenesRealizadosRoutes}) {
+        
     const router = express.Router();
     const apiRoutes = express.Router();
 

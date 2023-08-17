@@ -6,3 +6,5 @@ const mongoose = require('mongoose');
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => server.start())
 .catch(console.log);
+
+module.exports = server;
